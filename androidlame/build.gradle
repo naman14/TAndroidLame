@@ -6,7 +6,7 @@ model {
         buildToolsVersion "23.0.2"
 
         ndk {
-            moduleName "native"
+            moduleName "androidlame"
             ldLibs.add("log")
             CFlags.add("-DSTDC_HEADERS")
         }
@@ -23,8 +23,18 @@ model {
                 proguardFiles.add(file("proguard-rules.pro"))
             }
         }
+
+        productFlavors {
+            create("arm") {
+                ndk {
+                    abiFilters.add("armeabi-v7a")
+                }
+            }
+        }
+
     }
 }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

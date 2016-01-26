@@ -5,7 +5,7 @@
 /build
 /captures
 /*.iml
-
+/androidlame/src/main/obj
 /app/app-release.apk
 app/app.iml
 app/manifest-merger-release-report.txt
