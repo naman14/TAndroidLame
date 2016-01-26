@@ -5,17 +5,17 @@ package com.naman14.androidlame;
  */
 public class LameBuilder {
 
-    private int inSampleRate;
-    private int outSampleRate;
-    private int outBitrate;
-    private int outChannel;
-    private int quality;
+    public int inSampleRate;
+    public int outSampleRate;
+    public int outBitrate;
+    public int outChannel;
+    public int quality;
 
-    private String id3tagTitle;
-    private String id3tagArtist;
-    private String id3tagAlbum;
-    private String id3tagComment;
-    private String id3tagYear;
+    public String id3tagTitle;
+    public String id3tagArtist;
+    public String id3tagAlbum;
+    public String id3tagComment;
+    public String id3tagYear;
 
 
     public LameBuilder() {
@@ -82,6 +82,10 @@ public class LameBuilder {
     public LameBuilder setId3tagYear(String year) {
         this.id3tagYear = year;
         return this;
+    }
+
+    public AndroidLame build() {
+        return new AndroidLame(this);
     }
 
 }
