@@ -5,6 +5,7 @@
 #include "AndroidLame.h"
 #include <jni.h>
 
+lame_global_flags *glf;
 
 JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initialize(
         JNIEnv *env, jclass cls, jint inSamplerate, jint outChannel,
@@ -12,9 +13,31 @@ JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initialize(
         jstring id3tagTitle, jstring id3tagArtist, jstring id3tagAlbum,
         jstring id3tagYear, jstring id3tagComment) {
 
-    lame_global_flags *glf = initialize(env, inSamplerate, outChannel, outSamplerate, outBitrate,
-                                        quality, id3tagTitle, id3tagArtist, id3tagAlbum, id3tagYear,
-                                        id3tagComment);
+    glf = initialize(env, inSamplerate, outChannel, outSamplerate, outBitrate,
+                     quality, id3tagTitle, id3tagArtist, id3tagAlbum, id3tagYear,
+                     id3tagComment);
+}
+
+JNIEXPORT jint JNICALL Java_com_naman14_androidlame_AndroidLame_encode(
+        JNIEnv *env, jclass cls, jshortArray buffer_l,
+        jshortArray buffer_r, jint samples, jbyteArray mp3buf) {
+    return encode(env, glf, buffer_l, buffer_r, samples, mp3buf);
+}
+
+JNIEXPORT jint JNICALL Java_com_naman14_androidlame_AndroidLame_encodeBufferInterleaved(
+        JNIEnv *env, jclass cls, jshortArray pcm,
+        jint samples, jbyteArray mp3buf) {
+    return encodeBufferInterleaved(env, glf, pcm, samples, mp3buf);
+}
+
+JNIEXPORT jint JNICALL Java_com_naman14_androidlame_AndroidLame_flush(
+        JNIEnv *env, jclass cls, jbyteArray mp3buf) {
+    return flush(env, glf, mp3buf);
+}
+
+JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_close(
+        JNIEnv *env, jclass cls) {
+    close(glf);
 }
 
 
@@ -80,5 +103,64 @@ lame_global_flags *initialize(
 
     lame_init_params(glf);
 
+
     return glf;
+}
+
+jint encode(
+        JNIEnv *env, lame_global_flags *glf,
+        jshortArray buffer_l, jshortArray buffer_r,
+        jint samples, jbyteArray mp3buf) {
+    jshort *j_buffer_l = (*env)->GetShortArrayElements(env, buffer_l, NULL);
+
+    jshort *j_buffer_r = (*env)->GetShortArrayElements(env, buffer_r, NULL);
+
+    const jsize mp3buf_size = (*env)->GetArrayLength(env, mp3buf);
+    jbyte *j_mp3buf = (*env)->GetByteArrayElements(env, mp3buf, NULL);
+
+    int result = lame_encode_buffer(glf, j_buffer_l, j_buffer_r,
+                                    samples, j_mp3buf, mp3buf_size);
+
+    (*env)->ReleaseShortArrayElements(env, buffer_l, j_buffer_l, 0);
+    (*env)->ReleaseShortArrayElements(env, buffer_r, j_buffer_r, 0);
+    (*env)->ReleaseByteArrayElements(env, mp3buf, j_mp3buf, 0);
+
+    return result;
+}
+
+jint encodeBufferInterleaved(
+        JNIEnv *env, lame_global_flags *glf,
+        jshortArray pcm, jint samples, jbyteArray mp3buf) {
+    jshort *j_pcm = (*env)->GetShortArrayElements(env, pcm, NULL);
+
+    const jsize mp3buf_size = (*env)->GetArrayLength(env, mp3buf);
+    jbyte *j_mp3buf = (*env)->GetByteArrayElements(env, mp3buf, NULL);
+
+    int result = lame_encode_buffer_interleaved(glf, j_pcm,
+                                                samples, j_mp3buf, mp3buf_size);
+
+    (*env)->ReleaseShortArrayElements(env, pcm, j_pcm, 0);
+    (*env)->ReleaseByteArrayElements(env, mp3buf, j_mp3buf, 0);
+
+    return result;
+}
+
+jint flush(
+        JNIEnv *env, lame_global_flags *glf,
+        jbyteArray mp3buf) {
+    const jsize mp3buf_size = (*env)->GetArrayLength(env, mp3buf);
+    jbyte *j_mp3buf = (*env)->GetByteArrayElements(env, mp3buf, NULL);
+
+    int result = lame_encode_flush(glf, j_mp3buf, mp3buf_size);
+
+    (*env)->ReleaseByteArrayElements(env, mp3buf, j_mp3buf, 0);
+
+    return result;
+}
+
+void close(
+        lame_global_flags *glf) {
+    lame_close(glf);
+    glf = NULL;
+
 }

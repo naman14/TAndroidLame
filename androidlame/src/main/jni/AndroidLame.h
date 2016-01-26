@@ -19,6 +19,21 @@ lame_global_flags *initialize(
         jstring id3tagTitle, jstring id3tagArtist, jstring id3tagAlbum,
         jstring id3tagYear, jstring id3tagComment);
 
+jint encode(
+        JNIEnv *env, lame_global_flags *glf,
+        jshortArray buffer_l, jshortArray buffer_r,
+        jint samples, jbyteArray mp3buf);
+
+jint encodeBufferInterleaved(
+        JNIEnv *env, lame_global_flags *glf,
+        jshortArray pcm, jint samples, jbyteArray mp3buf);
+
+jint flush(
+        JNIEnv *env, lame_global_flags *glf,
+        jbyteArray mp3buf);
+
+void close(
+        lame_global_flags *glf);
 
 #ifdef __cplusplus
 }

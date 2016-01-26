@@ -27,4 +27,17 @@ public class AndroidLame {
                                           int outSamplerate, int outBitrate, int quality, String id3tagTitle,
                                           String id3tagArtist, String id3tagAlbum, String id3tagYear,
                                           String id3tagComment);
+
+    private native static int encode(short[] buffer_l, short[] buffer_r,
+                                     int samples, byte[] mp3buf);
+
+
+    private native static int encodeBufferInterleaved(short[] pcm, int samples,
+                                                      byte[] mp3buf);
+
+
+    private native static int flush(byte[] mp3buf);
+
+
+    private native static void close();
 }
