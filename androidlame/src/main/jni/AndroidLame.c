@@ -7,6 +7,12 @@
 
 lame_global_flags *glf;
 
+JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initializeDefault(
+        JNIEnv *env, jclass cls) {
+
+    glf = initializeDefault(env);
+}
+
 JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initialize(
         JNIEnv *env, jclass cls, jint inSamplerate, jint outChannel,
         jint outSamplerate, jint outBitrate, jint quality,
@@ -40,6 +46,12 @@ JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_close(
     close(glf);
 }
 
+
+lame_global_flags *initializeDefault(JNIEnv *env) {
+    lame_global_flags *glf = lame_init();
+    lame_init_params(glf);
+    return glf;
+}
 
 lame_global_flags *initialize(
         JNIEnv *env,

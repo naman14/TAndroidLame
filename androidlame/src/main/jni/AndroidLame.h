@@ -12,6 +12,9 @@
 extern "C" {
 #endif
 
+lame_global_flags *initializeDefault(
+        JNIEnv *env);
+
 lame_global_flags *initialize(
         JNIEnv *env,
         jint inSamplerate, jint outChannel,

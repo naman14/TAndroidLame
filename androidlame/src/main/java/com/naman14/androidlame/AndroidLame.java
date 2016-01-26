@@ -11,17 +11,20 @@ public class AndroidLame {
     }
 
     public AndroidLame() {
-        initialize(new LameBuilder());
+        initializeDefault();
     }
 
     public AndroidLame(LameBuilder builder) {
         initialize(builder);
     }
 
+
     private void initialize(LameBuilder builder) {
         initialize(builder.inSampleRate, builder.outChannel, builder.outSampleRate,
                 builder.outBitrate, builder.quality, builder.id3tagTitle, builder.id3tagArtist, builder.id3tagAlbum, builder.id3tagYear, builder.id3tagComment);
     }
+
+    private static native void initializeDefault();
 
     private static native void initialize(int inSamplerate, int outChannel,
                                           int outSamplerate, int outBitrate, int quality, String id3tagTitle,
