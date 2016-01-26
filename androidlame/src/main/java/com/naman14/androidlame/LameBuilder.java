@@ -5,11 +5,19 @@ package com.naman14.androidlame;
  */
 public class LameBuilder {
 
+
+    public enum Mode {
+        STEREO, JSTEREO, MONO, DEFAULT
+        //DUAL_CHANNEL not supported
+    }
+
     public int inSampleRate;
     public int outSampleRate;
     public int outBitrate;
     public int outChannel;
     public int quality;
+    public float scaleInput;
+    public Mode mode;
 
     public String id3tagTitle;
     public String id3tagArtist;
@@ -26,12 +34,17 @@ public class LameBuilder {
         this.id3tagComment = null;
         this.id3tagYear = null;
 
-        this.inSampleRate = 8000;
-        this.outSampleRate = 8000;
-        this.outChannel = 1;
+        this.inSampleRate = 44100;
+
+        //default 0, Lame picks best according to compression
+        this.outSampleRate = 0;
+
+        this.outChannel = 2;
         this.outBitrate = 128;
+        this.scaleInput = 1;
 
         this.quality = 5;
+        this.mode = Mode.DEFAULT;
     }
 
     public LameBuilder setQuality(int quality) {
@@ -81,6 +94,16 @@ public class LameBuilder {
 
     public LameBuilder setId3tagYear(String year) {
         this.id3tagYear = year;
+        return this;
+    }
+
+    public LameBuilder setScaleInput(float scaleAmount) {
+        this.scaleInput = scaleAmount;
+        return this;
+    }
+
+    public LameBuilder setMode(Mode mode) {
+        this.mode = mode;
         return this;
     }
 

@@ -18,7 +18,7 @@ lame_global_flags *initializeDefault(
 lame_global_flags *initialize(
         JNIEnv *env,
         jint inSamplerate, jint outChannel,
-        jint outSamplerate, jint outBitrate, jint quality,
+        jint outSamplerate, jint outBitrate, jfloat scaleInput, jint mode, jint quality,
         jstring id3tagTitle, jstring id3tagArtist, jstring id3tagAlbum,
         jstring id3tagYear, jstring id3tagComment);
 

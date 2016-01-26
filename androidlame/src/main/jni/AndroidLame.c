@@ -15,11 +15,11 @@ JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initializeDefaul
 
 JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initialize(
         JNIEnv *env, jclass cls, jint inSamplerate, jint outChannel,
-        jint outSamplerate, jint outBitrate, jint quality,
+        jint outSamplerate, jint outBitrate, jfloat scaleInput, jint mode, jint quality,
         jstring id3tagTitle, jstring id3tagArtist, jstring id3tagAlbum,
         jstring id3tagYear, jstring id3tagComment) {
 
-    glf = initialize(env, inSamplerate, outChannel, outSamplerate, outBitrate,
+    glf = initialize(env, inSamplerate, outChannel, outSamplerate, outBitrate, scaleInput, mode,
                      quality, id3tagTitle, id3tagArtist, id3tagAlbum, id3tagYear,
                      id3tagComment);
 }
@@ -56,7 +56,7 @@ lame_global_flags *initializeDefault(JNIEnv *env) {
 lame_global_flags *initialize(
         JNIEnv *env,
         jint inSamplerate, jint outChannel,
-        jint outSamplerate, jint outBitrate, jint quality,
+        jint outSamplerate, jint outBitrate, jfloat scaleInput, jint mode, jint quality,
         jstring id3tagTitle, jstring id3tagArtist, jstring id3tagAlbum,
         jstring id3tagYear, jstring id3tagComment) {
 
@@ -66,6 +66,20 @@ lame_global_flags *initialize(
     lame_set_out_samplerate(glf, outSamplerate);
     lame_set_brate(glf, outBitrate);
     lame_set_quality(glf, quality);
+    lame_set_scale(glf, scaleInput);
+
+    switch (mode) {
+        case 0:
+            lame_set_mode(glf, STEREO);
+        case 1:
+            lame_set_mode(glf, JOINT_STEREO);
+        case 3:
+            lame_set_mode(glf, MONO);
+        case 4:
+            lame_set_mode(glf, NOT_SET);
+        default:
+            lame_set_mode(glf, NOT_SET);
+    }
 
     const jchar *title = NULL;
     const jchar *artist = NULL;
