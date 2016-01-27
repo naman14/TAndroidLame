@@ -25,7 +25,6 @@ public class LameBuilder {
     public String id3tagComment;
     public String id3tagYear;
 
-
     public LameBuilder() {
 
         this.id3tagTitle = null;

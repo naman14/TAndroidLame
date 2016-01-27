@@ -24,7 +24,7 @@ JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initialize(
                      id3tagComment);
 }
 
-JNIEXPORT jint JNICALL Java_com_naman14_androidlame_AndroidLame_encode(
+JNIEXPORT jint JNICALL Java_com_naman14_androidlame_AndroidLame_lameEncode(
         JNIEnv *env, jclass cls, jshortArray buffer_l,
         jshortArray buffer_r, jint samples, jbyteArray mp3buf) {
     return encode(env, glf, buffer_l, buffer_r, samples, mp3buf);
@@ -36,12 +36,12 @@ JNIEXPORT jint JNICALL Java_com_naman14_androidlame_AndroidLame_encodeBufferInte
     return encodeBufferInterleaved(env, glf, pcm, samples, mp3buf);
 }
 
-JNIEXPORT jint JNICALL Java_com_naman14_androidlame_AndroidLame_flush(
+JNIEXPORT jint JNICALL Java_com_naman14_androidlame_AndroidLame_lameFlush(
         JNIEnv *env, jclass cls, jbyteArray mp3buf) {
     return flush(env, glf, mp3buf);
 }
 
-JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_close(
+JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_lameClose(
         JNIEnv *env, jclass cls) {
     close(glf);
 }
