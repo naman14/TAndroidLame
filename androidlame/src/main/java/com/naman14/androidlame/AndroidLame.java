@@ -5,8 +5,6 @@ package com.naman14.androidlame;
  */
 public class AndroidLame {
 
-    private LameBuilder builder;
-
     static {
         System.loadLibrary("androidlame");
     }
@@ -16,7 +14,6 @@ public class AndroidLame {
     }
 
     public AndroidLame(LameBuilder builder) {
-        this.builder = builder;
         initialize(builder);
     }
 
