@@ -18,11 +18,19 @@ model {
                 proguardFiles.add(file("proguard-rules.pro"))
             }
         }
+
+    }
+}
+
+repositories {
+    flatDir {
+        dirs '../androidlame/build/outputs/aar'
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile project(path: ':androidlame')
+    compile project(':androidlame')
+
 }

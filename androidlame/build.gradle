@@ -24,14 +24,6 @@ model {
             }
         }
 
-        productFlavors {
-            create("arm") {
-                ndk {
-                    abiFilters.add("armeabi-v7a")
-                }
-            }
-        }
-
     }
 }
 
