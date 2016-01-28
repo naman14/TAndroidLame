@@ -1,3 +1,17 @@
+/*
+ * Copyright (C) 2016 Naman Dwivedi
+ *
+ * Licensed under the GNU General Public License v3
+ *
+ * This is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ */
+
 package com.naman14.tandroidlame;
 
 import android.media.AudioFormat;
@@ -20,10 +34,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
-/**
- * Created by naman on 28/01/16.
- */
 public class Mp3AudioRecordActivity extends AppCompatActivity {
 
     int minBuffer;
@@ -128,7 +138,7 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
             if (bytesRead > 0) {
 
                 addLog("encoding bytes to mp3 buffer..");
-                int bytesEncoded = androidLame.encode(buffer,buffer, bytesRead, mp3buffer);
+                int bytesEncoded = androidLame.encode(buffer, buffer, bytesRead, mp3buffer);
                 addLog("bytes encoded=" + bytesEncoded);
 
                 if (bytesEncoded > 0) {
