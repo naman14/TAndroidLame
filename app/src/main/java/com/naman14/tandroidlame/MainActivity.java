@@ -25,5 +25,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button encode = (Button) findViewById(R.id.encode);
+        encode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, EncodeActivity.class));
+            }
+        });
+
     }
 }

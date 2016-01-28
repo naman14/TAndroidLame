@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Mp3AudioRecordActivity"/>
+        <activity android:name=".EncodeActivity"/>
     </application>
 
 </manifest>

@@ -4,14 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/record"
+    <TextView
+        android:id="@+id/pickFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/btnPickFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick file" />
 
     <Button
         android:id="@+id/encode"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Encode" />
+
 </LinearLayout>

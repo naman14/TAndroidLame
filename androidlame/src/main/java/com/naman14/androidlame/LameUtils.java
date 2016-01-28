@@ -51,7 +51,7 @@ public class LameUtils {
         return mf.getInteger(MediaFormat.KEY_BIT_RATE);
     }
 
-    public int read(File mInFile, short[] dst, int numSamples) throws IOException {
+    public static int read(File mInFile, short[] dst, int numSamples) throws IOException {
         FileInputStream fileStream = new FileInputStream(mInFile);
         BufferedInputStream mInStream = new BufferedInputStream(fileStream, STREAM_BUFFER_SIZE);
 
@@ -67,7 +67,7 @@ public class LameUtils {
         return index;
     }
 
-    public int read(File mInFile, short[] left, short[] right, int numSamples) throws IOException {
+    public static int read(File mInFile, short[] left, short[] right, int numSamples) throws IOException {
         FileInputStream fileStream = new FileInputStream(mInFile);
         BufferedInputStream mInStream = new BufferedInputStream(fileStream, STREAM_BUFFER_SIZE);
 

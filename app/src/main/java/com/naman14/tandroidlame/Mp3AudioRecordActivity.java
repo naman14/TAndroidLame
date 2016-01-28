@@ -109,6 +109,8 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
         androidLame = new LameBuilder()
                 .setInSampleRate(inSamplerate)
                 .setOutChannels(1)
+                .setOutBitrate(32)
+                .setOutSampleRate(inSamplerate)
                 .build();
 
         addLog("started audio recording");
@@ -126,7 +128,7 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
             if (bytesRead > 0) {
 
                 addLog("encoding bytes to mp3 buffer..");
-                int bytesEncoded = androidLame.encodeBufferInterLeaved(buffer, bytesRead, mp3buffer);
+                int bytesEncoded = androidLame.encode(buffer,buffer, bytesRead, mp3buffer);
                 addLog("bytes encoded=" + bytesEncoded);
 
                 if (bytesEncoded > 0) {
