@@ -15,12 +15,16 @@ JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initializeDefaul
 
 JNIEXPORT void JNICALL Java_com_naman14_androidlame_AndroidLame_initialize(
         JNIEnv *env, jclass cls, jint inSamplerate, jint outChannel,
-        jint outSamplerate, jint outBitrate, jfloat scaleInput, jint mode, jint quality,
+        jint outSamplerate, jint outBitrate, jfloat scaleInput, jint mode, jint vbrMode,
+        jint quality, jint vbrQuality, jint abrMeanBitrate, jint lowpassFreq, jint highpassFreq,
         jstring id3tagTitle, jstring id3tagArtist, jstring id3tagAlbum,
         jstring id3tagYear, jstring id3tagComment) {
 
     glf = initialize(env, inSamplerate, outChannel, outSamplerate, outBitrate, scaleInput, mode,
-                     quality, id3tagTitle, id3tagArtist, id3tagAlbum, id3tagYear,
+                     vbrMode,
+                     quality, vbrQuality, abrMeanBitrate, lowpassFreq, highpassFreq, id3tagTitle,
+                     id3tagArtist, id3tagAlbum,
+                     id3tagYear,
                      id3tagComment);
 }
 
@@ -56,7 +60,8 @@ lame_global_flags *initializeDefault(JNIEnv *env) {
 lame_global_flags *initialize(
         JNIEnv *env,
         jint inSamplerate, jint outChannel,
-        jint outSamplerate, jint outBitrate, jfloat scaleInput, jint mode, jint quality,
+        jint outSamplerate, jint outBitrate, jfloat scaleInput, jint mode, jint vbrMode,
+        jint quality, jint vbrQuality, jint abrMeanBitrate, jint lowpassFreq, jint highpassFreq,
         jstring id3tagTitle, jstring id3tagArtist, jstring id3tagAlbum,
         jstring id3tagYear, jstring id3tagComment) {
 
@@ -67,19 +72,51 @@ lame_global_flags *initialize(
     lame_set_brate(glf, outBitrate);
     lame_set_quality(glf, quality);
     lame_set_scale(glf, scaleInput);
+    lame_set_VBR_q(glf, vbrQuality);
+    lame_set_VBR_mean_bitrate_kbps(glf, abrMeanBitrate);
+    lame_set_lowpassfreq(glf, lowpassFreq);
+    lame_set_highpassfreq(glf, highpassFreq);
 
     switch (mode) {
         case 0:
             lame_set_mode(glf, STEREO);
+            break;
         case 1:
             lame_set_mode(glf, JOINT_STEREO);
+            break;
         case 3:
             lame_set_mode(glf, MONO);
+            break;
         case 4:
             lame_set_mode(glf, NOT_SET);
+            break;
         default:
             lame_set_mode(glf, NOT_SET);
+            break;
     }
+
+    switch (vbrMode) {
+        case 0:
+            lame_set_VBR(glf, vbr_off);
+            break;
+        case 2:
+            lame_set_VBR(glf, vbr_rh);
+            break;
+        case 3:
+            lame_set_VBR(glf, vbr_abr);
+            break;
+        case 4:
+            lame_set_VBR(glf, vbr_mtrh);
+            break;
+        case 6:
+            lame_set_VBR(glf, vbr_default);
+            break;
+        default:
+            lame_set_VBR(glf, vbr_off);
+            break;
+
+    }
+
 
     const jchar *title = NULL;
     const jchar *artist = NULL;

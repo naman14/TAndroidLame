@@ -31,6 +31,22 @@ public class Utils {
         return -1;
     }
 
+    public static int getIntForVbrMode(LameBuilder.VbrMode mode) {
+        switch (mode) {
+            case VBR_OFF:
+                return 0;
+            case VBR_RH:
+                return 2;
+            case VBR_ABR:
+                return 3;
+            case VBR_MTRH:
+                return 4;
+            case VBR_DEFAUT:
+                return 6;
+        }
+        return -1;
+    }
+
 
     public static int getSampleRate(String file) {
         MediaExtractor mex = new MediaExtractor();

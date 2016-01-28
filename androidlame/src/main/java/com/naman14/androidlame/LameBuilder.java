@@ -11,13 +11,26 @@ public class LameBuilder {
         //DUAL_CHANNEL not supported
     }
 
+    public enum VbrMode {
+        VBR_OFF, VBR_RH, VBR_MTRH, VBR_ABR, VBR_DEFAUT
+    }
+
+    public enum Presets {
+
+    }
+
     public int inSampleRate;
     public int outSampleRate;
     public int outBitrate;
     public int outChannel;
     public int quality;
+    public int vbrQuality;
+    public int abrMeanBitrate;
+    public int lowpassFreq;
+    public int highpassFreq;
     public float scaleInput;
     public Mode mode;
+    public VbrMode vbrMode;
 
     public String id3tagTitle;
     public String id3tagArtist;
@@ -44,6 +57,13 @@ public class LameBuilder {
 
         this.quality = 5;
         this.mode = Mode.DEFAULT;
+        this.vbrMode = VbrMode.VBR_OFF;
+        this.vbrQuality = 5;
+        this.abrMeanBitrate = 128;
+
+        //default =0, Lame chooses
+        this.lowpassFreq = 0;
+        this.highpassFreq = 0;
     }
 
     public LameBuilder setQuality(int quality) {
@@ -103,6 +123,31 @@ public class LameBuilder {
 
     public LameBuilder setMode(Mode mode) {
         this.mode = mode;
+        return this;
+    }
+
+    public LameBuilder setVbrMode(VbrMode mode) {
+        this.vbrMode = mode;
+        return this;
+    }
+
+    public LameBuilder setVbrQuality(int quality) {
+        this.vbrQuality = quality;
+        return this;
+    }
+
+    public LameBuilder setAbrMeanBitrate(int bitrate) {
+        this.abrMeanBitrate = bitrate;
+        return this;
+    }
+
+    public LameBuilder setLowpassFreqency(int freq) {
+        this.lowpassFreq = freq;
+        return this;
+    }
+
+    public LameBuilder setHighpassFreqency(int freq) {
+        this.highpassFreq = freq;
         return this;
     }
 

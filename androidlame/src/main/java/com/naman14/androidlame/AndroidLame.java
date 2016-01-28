@@ -19,7 +19,8 @@ public class AndroidLame {
 
     private void initialize(LameBuilder builder) {
         initialize(builder.inSampleRate, builder.outChannel, builder.outSampleRate,
-                builder.outBitrate, builder.scaleInput, Utils.getIntForMode(builder.mode), builder.quality, builder.id3tagTitle, builder.id3tagArtist,
+                builder.outBitrate, builder.scaleInput, Utils.getIntForMode(builder.mode), Utils.getIntForVbrMode(builder.vbrMode), builder.quality, builder.vbrQuality, builder.abrMeanBitrate,
+                builder.lowpassFreq, builder.highpassFreq,builder.id3tagTitle, builder.id3tagArtist,
                 builder.id3tagAlbum, builder.id3tagYear, builder.id3tagComment);
     }
 
@@ -47,8 +48,8 @@ public class AndroidLame {
     private static native void initializeDefault();
 
     private static native void initialize(int inSamplerate, int outChannel,
-                                          int outSamplerate, int outBitrate, float scaleInput, int mode,
-                                          int quality, String id3tagTitle,
+                                          int outSamplerate, int outBitrate, float scaleInput, int mode, int vbrMode,
+                                          int quality, int vbrQuality, int abrMeanBitrate,int lowpassFreq, int highpassFreq, String id3tagTitle,
                                           String id3tagArtist, String id3tagAlbum, String id3tagYear,
                                           String id3tagComment);
 
