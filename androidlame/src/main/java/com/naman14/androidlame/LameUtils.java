@@ -11,42 +11,9 @@ import java.io.IOException;
 /**
  * Created by naman on 27/01/16.
  */
-public class Utils {
+public class LameUtils {
 
     private static final int STREAM_BUFFER_SIZE = 4096;
-
-    public static int getIntForMode(LameBuilder.Mode mode) {
-        switch (mode) {
-            case STEREO:
-                return 0;
-            case JSTEREO:
-                return 1;
-//            case DUAL_CHANNEL:
-//                return 2;
-            case MONO:
-                return 3;
-            case DEFAULT:
-                return 4;
-        }
-        return -1;
-    }
-
-    public static int getIntForVbrMode(LameBuilder.VbrMode mode) {
-        switch (mode) {
-            case VBR_OFF:
-                return 0;
-            case VBR_RH:
-                return 2;
-            case VBR_ABR:
-                return 3;
-            case VBR_MTRH:
-                return 4;
-            case VBR_DEFAUT:
-                return 6;
-        }
-        return -1;
-    }
-
 
     public static int getSampleRate(String file) {
         MediaExtractor mex = new MediaExtractor();

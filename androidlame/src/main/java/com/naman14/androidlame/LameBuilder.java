@@ -15,9 +15,6 @@ public class LameBuilder {
         VBR_OFF, VBR_RH, VBR_MTRH, VBR_ABR, VBR_DEFAUT
     }
 
-    public enum Presets {
-
-    }
 
     public int inSampleRate;
     public int outSampleRate;
