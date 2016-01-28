@@ -1,6 +1,7 @@
 package com.naman14.tandroidlame;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, EncodeActivity.class));
+            }
+        });
+
+        Button github = (Button) findViewById(R.id.github);
+        github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https:github.com/naman14/TAndroidLame")));
             }
         });
 

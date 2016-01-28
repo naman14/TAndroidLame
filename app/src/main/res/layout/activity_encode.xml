@@ -22,14 +22,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="15dp"
-                android:text="Start recording" />
+                android:text="Pick wav file" />
 
             <Button
                 android:id="@+id/encode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="Stop recording" />
+                android:text="Encode to mp3" />
 
         </LinearLayout>
 
@@ -49,6 +49,6 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_alignParentBottom="true"
-        android:background="#000000" />
+        android:background="#99000000" />
 
 </RelativeLayout>

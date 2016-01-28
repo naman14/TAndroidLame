@@ -48,7 +48,7 @@
         android:id="@+id/log_container"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="#000000"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:background="#99000000" />
 
 </RelativeLayout>
