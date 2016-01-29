@@ -33,6 +33,7 @@ LameBuilder builder = new LameBuilder()
                 .setOutChannels(numChannels)
                 .setOutBitrate(bitrate)
                 .setOutSampleRate(outSamplerate)
+                .setMode(mode)
                 .setQuality(quality)
                 .setVbrMode(vbrMode)
                 .setVbrQuality(vbrQuality)
@@ -69,7 +70,14 @@ LameBuilder is a wrapper around the extra initialisation parameters in Lame.
 **outSampleRate** -   output sample rate in Hz.  default = 0, which means LAME picks best value    
   based on the amount of compression 
 **quality** - quality = 0 to 9.  0=best (very slow).  9=worst. default = 5    
-**scaleInput** - scale the input by this amount before encoding.  default=1      
+**scaleInput** - scale the input by this amount before encoding.  default=1   
+
+**Mode** - sets a preset mode  
+```java 
+public enum Mode {
+        STEREO, JSTEREO, MONO, DEFAULT
+    }
+```
 
 **vbrMode**
 There are 3 bitrate modes in Lame - CBR, VBR, ABR  
@@ -107,4 +115,11 @@ A wrapper class for actual native implementation and encoding
       
 `lameFlush(byte[] mp3buf);`  
   flushes the intenal PCM buffers, and returns the final mp3 frames, will also write id3v1 tags (if any) into the bitstream    returns number of bytes output to mp3buf    
+  
+  **Demo**  
+  A sample apk is avilable in [releases](https://github.com/naman14/TAndroidLame/releases).  
+  
+  Sample apk has two demos -  
+  - Encoding .wav to mp3 and   
+  - Recording audio using AudioRecorder and encoding in real time to mp3  
     
