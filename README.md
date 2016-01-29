@@ -66,9 +66,9 @@ LameBuilder is a wrapper around the extra initialisation parameters in Lame.
 
 **inSampleRate** - input sample rate in Hz.  default = 44100hz     
 **numChannels** - number of channels in input stream. default=2    
-**bitrate** - set the bitrate of out strteam  
+**bitrate** - set the bitrate of out stream  
 **outSampleRate** -   output sample rate in Hz.  default = 0, which means LAME picks best value    
-  based on the amount of compression 
+  based on the amount of compression   
 **quality** - quality = 0 to 9.  0=best (very slow).  9=worst. default = 5    
 **scaleInput** - scale the input by this amount before encoding.  default=1   
 
