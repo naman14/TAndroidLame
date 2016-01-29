@@ -119,6 +119,7 @@ A wrapper class for actual native implementation and encoding
   Demo
 ===============
   A sample apk is avilable in [releases](https://github.com/naman14/TAndroidLame/releases).  
+  (Remember to grant permissions from settings on Marshmallow devices or app will crash)
   
   Sample apk has two demos -  
   - Encoding .wav to mp3 and   
