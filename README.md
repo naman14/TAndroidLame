@@ -116,10 +116,23 @@ A wrapper class for actual native implementation and encoding
 `lameFlush(byte[] mp3buf);`  
   flushes the intenal PCM buffers, and returns the final mp3 frames, will also write id3v1 tags (if any) into the bitstream    returns number of bytes output to mp3buf    
   
-  **Demo**  
+  Demo
+===============
   A sample apk is avilable in [releases](https://github.com/naman14/TAndroidLame/releases).  
   
   Sample apk has two demos -  
   - Encoding .wav to mp3 and   
-  - Recording audio using AudioRecorder and encoding in real time to mp3  
+  - Recording audio using AudioRecorder and encoding in real time to mp3    
     
+<img src="https://raw.githubusercontent.com/naman14/TAndroidLame/master/app/Screenshot1.png" alt="alt text" width="250" height="500">
+<img src="https://raw.githubusercontent.com/naman14/TAndroidLame/master/app/Screenshot2.png" alt="alt text" width="250" height="500">
+
+## License
+
+>(c) 2015 Naman Dwivedi 
+
+>This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. 
+
+>This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
+
+>You should have received a copy of the GNU General Public License along with this app. If not, see <https://www.gnu.org/licenses/>.
