@@ -3,11 +3,13 @@ package com.naman14.androidlame;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * 简单整理录制逻辑到此类，有其他需求时视情况封装
@@ -54,6 +56,7 @@ public class Mp3Recorder {
         length += System.currentTimeMillis() - mStartTime;
     }
 
+    public static final String RECORD_ERROR = "record err";
 
     public void start() {
         mStartTime = System.currentTimeMillis();
@@ -80,10 +83,19 @@ public class Mp3Recorder {
                                 }
                             }
                         }
+                    } else if (bytesRead < 0) {
+                        pause();
+                        if (listener != null) {
+                            listener.onError(new RuntimeException(RECORD_ERROR));
+                        }
                     }
                 }
             }
         }).start();
+    }
+
+    public boolean isRecording() {
+        return isRecording;
     }
 
     public void stop() {
