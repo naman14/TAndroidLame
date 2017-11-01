@@ -1,37 +1,37 @@
-apply plugin: 'com.android.model.application'
+apply plugin: 'com.android.application'
 
-model {
-    android {
-        compileSdkVersion 23
-        buildToolsVersion "23.0.2"
+android {
 
-        defaultConfig {
-            applicationId "com.naman14.tandroidlame"
-            minSdkVersion.apiLevel 16
-            targetSdkVersion.apiLevel 23
-            versionCode 1
-            versionName "1.0"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        applicationId "com.naman14.tandroidlame"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles.add(file("proguard-rules.pro"))
         }
-        buildTypes {
-            release {
-                minifyEnabled false
-                proguardFiles.add(file("proguard-rules.pro"))
-            }
-        }
+    }
 
+    externalNativeBuild {
+        ndkBuild {
+            path '../androidlame/src/main/jni/Android.mk'
+        }
     }
 }
 
-repositories {
-    flatDir {
-        dirs '../androidlame/build/outputs/aar'
-    }
-}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
     compile project(':androidlame')
 
 }
