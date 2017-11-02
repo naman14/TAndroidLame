@@ -54,14 +54,6 @@ LameBuilder builder = new LameBuilder()
 AndroidLame androidLame = builder.build(); //use this
 AndroidLame androidLame = new AndroidLame(builder); //or this
 ```
-## Building with Android studio
-
-Import the project and download the experimental gradle plugin and corresponding gradle version.  
-`experimental-0.6.0alpha5` plugin version and `2.10` gradle version  
-(http://tools.android.com/tech-docs/new-build-system/gradle-experimental)
-Use `ndk-build` in androidlame/src/main/jni (where Android.mk is located) to generate the libandroidlame.so shared library  
-(Android studio should automatically generate the so file when building but somehow it doesn't)
-
 ## Documentation
 
 ## LameBuilder
