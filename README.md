@@ -1,5 +1,7 @@
 # AndroidLame
 
+[![](https://jitpack.io/v/naman14/TAndroidLame.svg)](https://jitpack.io/#naman14/TAndroidLame)
+
 AndroidLame is a wrapper Library for Android/Java around Lame MP3 encoder (http://lame.sourceforge.net/)   
 Built using NDK and Andorid studio with experimental gradle plugin.
 
