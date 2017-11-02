@@ -17,6 +17,8 @@ allprojects {
 ```
 #### app/build.gradle
 ```gradle
+apply plugin: 'com.github.dcendents.android-maven' //add it to top of app level build.gradle  
+
 dependencies {
 	        compile 'com.github.naman14:TAndroidLame:1.0'
 	}
