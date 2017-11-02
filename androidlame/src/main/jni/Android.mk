@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
     include $(CLEAR_VARS)
 
     LOCAL_MODULE        := androidlame
-    LOCAL_SRC_FILES     := \
+    LOCAL_SRC_FILES     := AndroidLame.c \
     ./libmp3lame/bitstream.c \
     ./libmp3lame/encoder.c \
     ./libmp3lame/fft.c \

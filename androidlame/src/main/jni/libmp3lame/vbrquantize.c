@@ -20,7 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* $Id: vbrquantize.c,v 1.141.2.1 2012/02/07 13:40:37 robert Exp $ */
+/* $Id: vbrquantize.c,v 1.142 2012/02/07 13:36:35 robert Exp $ */
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
