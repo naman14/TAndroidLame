@@ -1,4 +1,4 @@
-# AndroidLame
+# AndroidLame - An Amazing Project
 
 [![](https://jitpack.io/v/naman14/TAndroidLame.svg)](https://jitpack.io/#naman14/TAndroidLame)
 
