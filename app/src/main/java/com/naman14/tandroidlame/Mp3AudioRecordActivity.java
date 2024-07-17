@@ -19,8 +19,6 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,12 +32,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Mp3AudioRecordActivity extends AppCompatActivity {
 
     int minBuffer;
     int inSamplerate = 8000;
 
-    String filePath = Environment.getExternalStorageDirectory() + "/testrecord.mp3";
+    String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/testrecord.mp3";
 
     boolean isRecording = false;
 
@@ -95,10 +96,14 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
                 AudioFormat.ENCODING_PCM_16BIT);
 
         addLog("Initialising audio recorder..");
-        audioRecord = new AudioRecord(
-                MediaRecorder.AudioSource.MIC, inSamplerate,
-                AudioFormat.CHANNEL_IN_MONO,
-                AudioFormat.ENCODING_PCM_16BIT, minBuffer * 2);
+        try {
+            audioRecord = new AudioRecord(
+                    MediaRecorder.AudioSource.MIC, inSamplerate,
+                    AudioFormat.CHANNEL_IN_MONO,
+                    AudioFormat.ENCODING_PCM_16BIT, minBuffer * 2);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
 
         //5 seconds data
         addLog("creating short buffer array");

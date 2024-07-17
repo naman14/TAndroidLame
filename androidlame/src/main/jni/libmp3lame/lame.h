@@ -84,7 +84,7 @@ typedef enum preset_mode_e {
     ABR_8 = 8,
     ABR_320 = 320,
 
-    V9 = 410, /*Vx to match LameBuilder and VBR_xx to match FhG*/
+    V9 = 410, /*Vx to match Lame and VBR_xx to match FhG*/
     VBR_10 = 410,
     V8 = 420,
     VBR_20 = 420,

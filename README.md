@@ -1,8 +1,8 @@
 # AndroidLame
 
-[![](https://jitpack.io/v/naman14/TAndroidLame.svg)](https://jitpack.io/#naman14/TAndroidLame)
+[![](https://jitpack.io/v/naman14/TAndroidLame.svg)](https://jitpack.io/#naman14/TAndroidLame) [Maven](https://mvnrepository.com/artifact/com.github.naman14/TAndroidLame)
 
-AndroidLame is a wrapper Library for Android/Java around Lame MP3 encoder (http://lame.sourceforge.net/)   
+AndroidLame is a wrapper Library for Android/Java around Lame MP3 encoder (https://lame.sourceforge.io/)   
 Built using NDK and Andorid studio with experimental gradle plugin.
 
 ## Gradle dependency
@@ -10,19 +10,17 @@ Built using NDK and Andorid studio with experimental gradle plugin.
 ```gradle
 allprojects {
 		repositories {
-			...
+			mavenCentral()
 			maven { url "https://jitpack.io" }
 		}
 	}
 ```
 #### app/build.gradle
 ```gradle
-apply plugin: 'com.github.dcendents.android-maven' //add it to top of app level build.gradle  
-
 dependencies {
-	        compile 'com.github.naman14:TAndroidLame:1.1'
-	}
-```	
+    implementation 'com.github.naman14:TAndroidLame:1.1'
+}
+```
 
 # Usage
 
@@ -133,3 +131,4 @@ A wrapper class for actual native implementation and encoding
 >This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
 
 >You should have received a copy of the GNU General Public License along with this app. If not, see <https://www.gnu.org/licenses/>.
+
