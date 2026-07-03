@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -109,7 +108,7 @@ public class EncodeActivity extends AppCompatActivity {
     private void encode() {
 
         File input = new File(getRealPathFromURI(inputUri));
-        final File output = new File(Environment.getExternalStorageDirectory() + "/testencode.mp3");
+        final File output = new File(getExternalFilesDir(null) + "/testencode.mp3");
 
         int CHUNK_SIZE = 8192;
 

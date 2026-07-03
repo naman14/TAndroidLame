@@ -14,12 +14,14 @@
 
 package com.naman14.tandroidlame;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -39,7 +41,7 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
     int minBuffer;
     int inSamplerate = 8000;
 
-    String filePath = Environment.getExternalStorageDirectory() + "/testrecord.mp3";
+    String filePath;
 
     boolean isRecording = false;
 
@@ -54,6 +56,10 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_record);
+
+        // App-specific external storage: writable without any runtime permission,
+        // and unaffected by scoped storage restrictions on API 29+.
+        filePath = getExternalFilesDir(null) + "/testrecord.mp3";
 
         Button start = (Button) findViewById(R.id.startRecording);
         Button stop = (Button) findViewById(R.id.stopRecording);
@@ -90,6 +96,19 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
     }
 
     private void startRecording() {
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
+            isRecording = false;
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(Mp3AudioRecordActivity.this,
+                            "RECORD_AUDIO permission not granted", Toast.LENGTH_SHORT).show();
+                }
+            });
+            return;
+        }
 
         minBuffer = AudioRecord.getMinBufferSize(inSamplerate, AudioFormat.CHANNEL_IN_MONO,
                 AudioFormat.ENCODING_PCM_16BIT);

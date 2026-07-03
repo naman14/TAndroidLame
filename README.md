@@ -1,28 +1,39 @@
 # AndroidLame
 
-[![](https://jitpack.io/v/naman14/TAndroidLame.svg)](https://jitpack.io/#naman14/TAndroidLame)
+[![](https://jitpack.io/v/zubinraja/ThAndroidLame.svg)](https://jitpack.io/#zubinraja/ThAndroidLame)
 
-AndroidLame is a wrapper Library for Android/Java around Lame MP3 encoder (http://lame.sourceforge.net/)   
-Built using NDK and Andorid studio with experimental gradle plugin.
+AndroidLame is a wrapper Library for Android/Java around Lame MP3 encoder (http://lame.sourceforge.net/)
+
+Built with the current Android Gradle Plugin / Gradle 8.13 and NDK r28, and compiled with 16&nbsp;KB
+page-size aligned native libraries, as required by Google Play for apps targeting Android 15+.
+The library module (`androidlame`) has **zero dependencies** — no legacy Support Library, no AndroidX
+requirement — so it drops into any Kotlin or Java project, minSdk 21+, regardless of which UI toolkit
+that project uses.
 
 ## Gradle dependency
-#### build.gradle (project)
+
+#### settings.gradle (or build.gradle for older AGP versions)
 ```gradle
-allprojects {
-		repositories {
-			...
-			maven { url "https://jitpack.io" }
-		}
-	}
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+}
 ```
 #### app/build.gradle
 ```gradle
-apply plugin: 'com.github.dcendents.android-maven' //add it to top of app level build.gradle  
-
 dependencies {
-	        compile 'com.github.naman14:TAndroidLame:1.1'
-	}
-```	
+    implementation 'com.github.zubinraja:ThAndroidLame:2.0.1'
+}
+```
+Replace `2.0.1` with a release tag (see the badge above), a commit hash, or `master-SNAPSHOT`
+to track the latest commit. No extra plugin is required on the consuming side — the old
+`com.github.dcendents.android-maven` plugin instructions are obsolete and no longer needed.
+
+Verified working: this exact coordinate is live on JitPack (build status `ok`) and the resulting
+AAR was checked to contain 16&nbsp;KB page-size aligned native libraries for all four ABIs.
 
 # Usage
 

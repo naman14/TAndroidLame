@@ -1,15 +1,21 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    namespace 'com.naman14.androidlame'
+    compileSdk 36
+    ndkVersion "28.2.13676358"
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 21
+        targetSdkVersion 36
+        versionCode 3
+        versionName "2.0.1"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     buildTypes {
@@ -24,11 +30,30 @@ android {
             path 'src/main/jni/Android.mk'
         }
     }
+
+    publishing {
+        singleVariant('release')
+    }
 }
-
-
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.13.2'
 }
+
+// JitPack resolves this module as com.github.zubinraja.ThAndroidLame:androidlame:<tag>
+// (see https://docs.jitpack.io multi-module convention: com.github.User.Repo:Module:Tag).
+// The exact groupId/version below only matter for local `publishToMavenLocal` testing;
+// JitPack re-serves the built artifact under the GitHub-derived coordinates regardless.
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.zubinraja.ThAndroidLame'
+                artifactId = 'androidlame'
+                version = android.defaultConfig.versionName
+            }
+        }
+    }
+}
+

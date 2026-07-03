@@ -28,4 +28,9 @@ LOCAL_PATH := $(call my-dir)
     LOCAL_LDLIBS := -llog
     LOCAL_CFLAGS = -DSTDC_HEADERS
 
+    # Play Store 16 KB page size requirement: align native library segments to
+    # 16 KB. NDK r28+ does this by default, but the flags are set explicitly
+    # here so the library stays compliant even if built with an older NDK.
+    LOCAL_LDFLAGS += -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384
+
     include $(BUILD_SHARED_LIBRARY)
